@@ -4,6 +4,13 @@ var rover = {
   direction : "N",
   travelLog : [0,0]
 }
+
+var rover2 = {
+  x : 9,
+  y : 9,
+  direction : "N",
+  travelLog : [0,0]
+}
 //Add additional rovers to the map.
 
 // ======================
@@ -11,8 +18,8 @@ var rover = {
 var grid = [
   [null, null, "obstacle", null, null, null, null, null, null, null],
   [null, null, null, null, null, "obstacle", null, null, null, null],
-  [null, null, null, null, null, "obstacle", null, null, null, null],
-  [null, null, null, null, "obstacle", null, null, null, null, null],
+  [null, null, null, "obstacle", "obstacle", "obstacle", null, null, null, null],
+  [null, null, null, null, null, null, null, null, "obstacle", null],
   [null, null, null, null, null, null, "obstacle", null, null, null],
   [null, null, null, null, null, null, null, null, null, null],
   [null, "obstacle", null, null, null, null, null, null, null, null],
@@ -83,13 +90,14 @@ function moveForward(rover){
        console.log ("You can't place Rover outside of the board!");
        console.log (`Rover current position is ${rover.x},${rover.y}`);
      }
-     else if (grid[rover.y-1] != null) {
+     else if (grid[rover.y-1][rover.x] !=null ) {
       //report the obstacle as found
         console.log ("Rover can crash with an obstacle! STOP!");
         console.log (`Rover current position is ${rover.x},${rover.y}`);
       }
-     else if (rover.y == rover2.y && rover.x == rover2.x){
-       
+     else if ((rover.y-1 == rover2.y) && (rover.x == rover2.x)){
+       console.log("Rover can crash with another Rover! STOP!");
+       console.log (`Rover current position is ${rover.x},${rover.y}`);
      } 
      else {
        rover.y--;
@@ -108,6 +116,10 @@ function moveForward(rover){
         console.log ("Rover can crash with an obstacle! STOP!");
         console.log (`Rover current position is ${rover.x},${rover.y}`);
       } 
+      else if ((rover.y+1 == rover2.y) && (rover.x == rover2.x)){
+       console.log("Rover can crash with another Rover! STOP!");
+       console.log (`Rover current position is ${rover.x},${rover.y}`);
+     } 
         else {
        rover.y++;
        rover["travelLog"].push([rover.x,rover.y]);
@@ -124,7 +136,11 @@ function moveForward(rover){
       else if (grid[rover.x-1] != null) {
         console.log ("Rover can crash with an obstacle! STOP!");
         console.log (`Rover current position is ${rover.x},${rover.y}`);
-      } 
+      }
+      else if ((rover.x-1 == rover2.x) && (rover.y == rover2.y)){
+       console.log("Rover can crash with another Rover! STOP!");
+       console.log (`Rover current position is ${rover.x},${rover.y}`);
+     } 
       else {
        rover.x--;
        rover["travelLog"].push([rover.x,rover.y]);
@@ -141,7 +157,11 @@ function moveForward(rover){
       else if (grid[rover.x+1] != null) {
         console.log ("Rover can crash with an obstacle! STOP!");
         console.log (`Rover current position is ${rover.x},${rover.y}`);
-      } 
+      }
+      else if ((rover.x-1 == rover2.x) && (rover.y == rover2.y)){
+       console.log("Rover can crash with another Rover! STOP!");
+       console.log (`Rover current position is ${rover.x},${rover.y}`);
+     } 
       else {
        rover.x++;
        rover["travelLog"].push([rover.x,rover.y]); 
@@ -170,6 +190,15 @@ function moveBackward(rover){
        console.log ("You can't place Rover outside of the board!");
        console.log (`Rover position is ${rover.x},${rover.y}`);
      }
+      else if (grid[rover.y+1][rover.x] !=null ) {
+      //report the obstacle as found
+        console.log ("Rover can crash with an obstacle! STOP!");
+        console.log (`Rover current position is ${rover.x},${rover.y}`);
+      }
+     else if ((rover.y+1 == rover2.y) && (rover.x == rover2.x)){
+       console.log("Rover can crash with another Rover! STOP!");
+       console.log (`Rover current position is ${rover.x},${rover.y}`);
+     } 
      else {
        rover.y++;
        rover["travelLog"].push([rover.x,rover.y]);
@@ -183,6 +212,15 @@ function moveBackward(rover){
        console.log ("You can't place Rover outside of the board!");
        console.log (`Rover position is ${rover.x},${rover.y}`);
      }
+      else if (grid[rover.y-1][rover.x] !=null ) {
+      //report the obstacle as found
+        console.log ("Rover can crash with an obstacle! STOP!");
+        console.log (`Rover current position is ${rover.x},${rover.y}`);
+      }
+     else if ((rover.y-1 == rover2.y) && (rover.x == rover2.x)){
+       console.log("Rover can crash with another Rover! STOP!");
+       console.log (`Rover current position is ${rover.x},${rover.y}`);
+     } 
       else {
        rover.y--;
        rover["travelLog"].push([rover.x,rover.y]);
@@ -196,6 +234,15 @@ function moveBackward(rover){
        console.log ("You can't place Rover outside of the board!");
        console.log (`Rover position is ${rover.x},${rover.y}`);
      }
+      else if (grid[rover.x+1][rover.y] !=null ) {
+      //report the obstacle as found
+        console.log ("Rover can crash with an obstacle! STOP!");
+        console.log (`Rover current position is ${rover.x},${rover.y}`);
+      }
+     else if ((rover.x+1 == rover2.x) && (rover.y == rover2.y)){
+       console.log("Rover can crash with another Rover! STOP!");
+       console.log (`Rover current position is ${rover.x},${rover.y}`);
+     } 
       else {
        rover.x++;
        rover["travelLog"].push([rover.x,rover.y]);
@@ -209,6 +256,15 @@ function moveBackward(rover){
        console.log ("You can't place Rover outside of the board!");
        console.log (`Rover position is ${rover.x},${rover.y}`);
      }
+      else if (grid[rover.x-1][rover.y] !=null ) {
+      //report the obstacle as found
+        console.log ("Rover can crash with an obstacle! STOP!");
+        console.log (`Rover current position is ${rover.x},${rover.y}`);
+      }
+     else if ((rover.x-1 == rover2.x) && (rover.y == rover2.y)){
+       console.log("Rover can crash with another Rover! STOP!");
+       console.log (`Rover current position is ${rover.x},${rover.y}`);
+     } 
       else {
        rover.x--;
        rover["travelLog"].push([rover.x,rover.y]);
